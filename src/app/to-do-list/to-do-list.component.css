@@ -1,0 +1,236 @@
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --primary: #00bfff;
+  --text-main: #1a202c;
+  --high-priority: #ffe5e5;
+  --high-text: #ff4d4d;
+  --medium-priority: #fff4e5;
+  --medium-text: #ff9800;
+  --low-priority: #e5f9e5;
+  --low-text: #4caf50;
+}
+
+/* ================= BODY FIX ================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; /* يمنع scroll عرضي */
+}
+
+/* ================= MAIN CONTAINER ================= */
+.container {
+  padding: 30px;
+  height: auto;
+}
+
+/* ================= HEADER ================= */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.welcome-text h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.welcome-text p {
+  color: #718096;
+  margin: 5px 0 0;
+}
+
+/* ================= FORM ================= */
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form input,
+.form select {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form input:focus,
+.form select:focus {
+  border-color: var(--primary);
+}
+
+/* ================= BUTTON ================= */
+.add-task-btn {
+  background: blue;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-task-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ================= BOARD ================= */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  align-items: start;
+}
+
+/* ================= COLUMN ================= */
+.column {
+  background: transparent;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.todo-dot { background: #718096; }
+.inprogress-dot { background: #00bfff; }
+.done-dot { background: #4caf50; }
+
+/* ================= CARD ================= */
+.card {
+  background: var(--card-bg);
+  padding: 18px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+  margin-bottom: 18px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* ================= PRIORITY ================= */
+.priority-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.priority-high { background: var(--high-priority); color: var(--high-text); }
+.priority-medium { background: var(--medium-priority); color: var(--medium-text); }
+.priority-low { background: var(--low-priority); color: var(--low-text); }
+
+/* ================= CARD CONTENT ================= */
+.card h4 {
+  margin: 8px 0 5px;
+  font-size: 15px;
+  color: var(--text-main);
+}
+
+.card p {
+  margin: 0;
+  font-size: 13px;
+  color: #a0aec0;
+}
+
+/* ================= CARD TOP ================= */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shared-label {
+  font-size: 10px;
+  color: #00bfff;
+  font-style: italic;
+}
+
+/* ================= ACTIONS ================= */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-btn {
+  background: none;
+  border: 1px solid #edf2f7;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: 0.2s;
+}
+
+.action-btn:hover {
+  background: #f7fafc;
+}
+
+.action-btn.delete:hover {
+  background-color: #ffe5e5;
+  border-color: #ff4d4d;
+}
+
+/* ================= SHARE ================= */
+.share-box {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 8px;
+}
+
+.share-input {
+  flex: 1;
+  font-size: 11px;
+  padding: 6px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.share-box button {
+  font-size: 11px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
+.bg{
+  background-color: red;
+  color: wheat;
+}

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="header-section ">
+    <div class="welcome-text">
+      <h2>Welcome back, <strong>{{ userName }}</strong></h2>
+      <p>Viewing {{myVisibleTasks.length}} tasks (Owned or Shared)</p>
+    </div>
+    <div class="form">
+      <input [(ngModel)]="newTask.title" placeholder="Task title" class="action-btn">
+      <select [(ngModel)]="newTask.priority" class="action-btn">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <button class="add-task-btn" (click)="addTask()">+ Add Task</button>
+    </div>
+  </div>
+
+  <div class="board ">
+    <!-- Reusable Column Template -->
+    <div class="column" *ngFor="let col of [{t:'To Do', s:'todo', d:'todo-dot', tasks: todoTasks}, {t:'In Progress', s:'inprogress', d:'inprogress-dot', tasks: inProgressTasks}, {t:'Done', s:'done', d:'done-dot', tasks: doneTasks}]">
+      <div class="column-header">
+        <span class="dot" [ngClass]="col.d"></span>
+        <h6 style="margin:0; font-weight:bold">{{col.t}} ({{col.tasks.length}})</h6>
+      </div>
+
+      <div *ngFor="let task of col.tasks" class="card">
+        <div class="card-top">
+          <span class="priority-badge" [ngClass]="'priority-' + task.priority">{{task.priority}}</span>
+          <!-- Show "Shared" icon if someone shared it with you -->
+          <span *ngIf="task.owner !== userEmail" class="shared-label">👥 Shared by {{task.owner}}</span>
+        </div>
+        
+        <h4>{{task.title}}</h4>
+        <p>{{task.desc}}</p>
+
+        <!-- Share Input -->
+        <div class="share-box" *ngIf="task.owner === userEmail">
+          <input #shareMail type="email" placeholder="Share with email..." class="share-input">
+          <button class="" (click)="shareTask(task, shareMail.value); shareMail.value=''" >Share</button>
+        </div>
+
+        <div class="card-actions">
+          <button *ngIf="task.status !== 'todo'" class="action-btn" (click)="moveTask(task,'todo')">↺</button>
+          <button *ngIf="task.status !== 'done'" class="action-btn" (click)="moveTask(task, task.status === 'todo' ? 'inprogress' : 'done')">➡</button>
+          <button class="action-btn delete" (click)="deleteTask(task.id)">❌</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
